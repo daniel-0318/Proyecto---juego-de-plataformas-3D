@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SeleccionarPersonaje : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class SeleccionarPersonaje : MonoBehaviour {
 
 	// Use this for initialization
 	private void Start () {
+
+		index = PlayerPrefs.GetInt ("Seleccion de personaje");
+
 		lista_personajes = new GameObject[transform.childCount];
 
 		//Se llena la lista con los modelos (personajes)
@@ -22,8 +26,8 @@ public class SeleccionarPersonaje : MonoBehaviour {
 		}
 
 		//activamos que solo se vea el primer personaje en la lista
-		if (lista_personajes [0]) {
-			lista_personajes [0].SetActive (true);
+		if (lista_personajes [index]) {
+			lista_personajes [index].SetActive (true);
 		}
 	}
 
@@ -49,6 +53,11 @@ public class SeleccionarPersonaje : MonoBehaviour {
 		}
 		//se activa el personaje en la posicion index
 		lista_personajes [index].SetActive (true);
+	}
+
+	public void botonConfirmar(){
+		PlayerPrefs.SetInt ("Seleccion de personaje", index);
+		SceneManager.LoadScene("nivel1");
 	}
 
 }
