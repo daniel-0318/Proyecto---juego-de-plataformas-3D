@@ -8,22 +8,20 @@ using System;
 public class CameraController : MonoBehaviour {
 
 	public GameObject []personajes;
-	private int jugador_activo;
-	private Vector3 offset; // posicion
+	public GameObject jugado1;
+	public GameObject jugado2;
+	private Vector3 offset1; // posicion
+	private Vector3 offset2; // posicion
 
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("Camera Controller ENTRO****");
 		try{
-
-			personajes = GameObject.FindGameObjectsWithTag("Player");
-			/*
-			for(int i=0;i<personajes.Length;i++){
-				if(personajes[i].activeSelf){
-					jugador_activo = i;
-				}
-			}*/
-
+			personajes = new GameObject[2];
+			personajes[0] = GameObject.FindGameObjectWithTag("Player1");
+			personajes[1] = GameObject.FindGameObjectWithTag("Player2");
+			offset1 = transform.position - personajes[0].transform.position;
+			offset2 = transform.position - personajes[1].transform.position;
 			Debug.Log("CameraController: Tamaño lista= " + personajes.Length);
 		}catch(Exception e){
 			Debug.Log (e);
@@ -33,13 +31,17 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-
 		try{
-			Debug.Log("En LateUpdate la lista tiene: " + personajes.Length);
-			offset = transform.position - personajes[jugador_activo].transform.position;
 			Debug.Log("camera");
 			Debug.Log(transform.position);
-			transform.position = personajes[jugador_activo].transform.position + offset;
+			if(personajes[0].activeSelf){
+				transform.position = jugado1.transform.position + offset1;
+			}else{
+				if(personajes[1].activeSelf){
+					transform.position = jugado2.transform.position + offset2;
+				}
+			}
+
 		}catch(Exception e){
 			Debug.Log (e);
 		}

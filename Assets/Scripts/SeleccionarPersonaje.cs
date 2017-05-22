@@ -6,31 +6,57 @@ using UnityEngine.SceneManagement;
 public class SeleccionarPersonaje : MonoBehaviour {
 
 	public GameObject[] lista_personajes;
+	public string jugador_selecionado;
 	public int index = 0;
 
 	// Use this for initialization
 	private void Start () {
-
+		jugador_selecionado = PlayerPrefs.GetString ("Seleccion de personaje");
 		index = PlayerPrefs.GetInt ("Seleccion de personaje");
+		Debug.Log (SceneManager.GetActiveScene ().name + " "+ jugador_selecionado +" " + index);
+		if (SceneManager.GetActiveScene ().name == "Seleccion de personaje") {
+			Debug.Log ("Start seleccion");
+			escena_selection ();
+			act_desact ();
+		} else {
+			Debug.Log ("Otro nivel");
+			lista_personajes = new GameObject[2];
+			lista_personajes[0] = GameObject.FindGameObjectWithTag("Player1");
+			lista_personajes[1] = GameObject.FindGameObjectWithTag("Player2");
+			act_desact ();
+		}
 
+
+
+		Debug.Log ("SeleccionarPersonaje: Tamaño lista= " + lista_personajes.Length);
+	}
+
+	public void escena_selection(){
 		lista_personajes = new GameObject[transform.childCount];
 
 		//Se llena la lista con los modelos (personajes)
 		for (int i=0; i < transform.childCount; i++) {
 			lista_personajes [i] = transform.GetChild (i).gameObject;
 		}
+	}
 
+	public void act_desact(){
 		//desactivamos el render de los modelos (para que no se vean todos)
 		foreach(GameObject go in lista_personajes){
 			go.SetActive (false);
 		}
-
-		//activamos que solo se vea el primer personaje en la lista
-		if (lista_personajes [index]) {
-			lista_personajes [index].SetActive (true);
+		if (SceneManager.GetActiveScene ().name == "Seleccion de personaje") {
+			//activamos que solo se vea el primer personaje en la lista
+			if (lista_personajes [index]) {
+				lista_personajes [index].SetActive (true);
+			}
+		} else {
+			if (lista_personajes [0].tag == jugador_selecionado) {
+				lista_personajes [0].SetActive (true);
+			} else {
+				lista_personajes [1].SetActive (true);
+			}
 		}
-
-		Debug.Log ("SeleccionarPersonaje: Tamaño lista= " + lista_personajes.Length);
 	}
 
 	public void botonIzq(){
@@ -59,6 +85,9 @@ public class SeleccionarPersonaje : MonoBehaviour {
 
 	public void botonConfirmar(){
 		PlayerPrefs.SetInt ("Seleccion de personaje", index);
+		Debug.Log ("BotonConfirmar");
+		Debug.Log (SceneManager.GetActiveScene ().name+" " +lista_personajes[index].tag + " " + index);
+		PlayerPrefs.SetString("Seleccion de personaje", lista_personajes[index].tag);
 		SceneManager.LoadScene("nivel1");
 	}
 
