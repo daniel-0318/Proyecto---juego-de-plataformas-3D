@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SeleccionarPersonaje : MonoBehaviour {
 
-	private GameObject[] lista_personajes;
-	private int index = 0;
+	public GameObject[] lista_personajes;
+	public int index = 0;
 
 	// Use this for initialization
 	private void Start () {
@@ -29,6 +29,8 @@ public class SeleccionarPersonaje : MonoBehaviour {
 		if (lista_personajes [index]) {
 			lista_personajes [index].SetActive (true);
 		}
+
+		Debug.Log ("SeleccionarPersonaje: Tamaño lista= " + lista_personajes.Length);
 	}
 
 	public void botonIzq(){
