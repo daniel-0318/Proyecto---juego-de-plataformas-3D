@@ -20,9 +20,10 @@ public class SeleccionarPersonaje : MonoBehaviour {
 			act_desact ();
 		} else {
 			Debug.Log ("Otro nivel");
-			lista_personajes = new GameObject[2];
+			lista_personajes = new GameObject[3];
 			lista_personajes[0] = GameObject.FindGameObjectWithTag("Player1");
 			lista_personajes[1] = GameObject.FindGameObjectWithTag("Player2");
+			lista_personajes[2] = GameObject.FindGameObjectWithTag("Player3");
 			act_desact ();
 		}
 
@@ -53,8 +54,10 @@ public class SeleccionarPersonaje : MonoBehaviour {
 		} else {
 			if (lista_personajes [0].tag == jugador_selecionado) {
 				lista_personajes [0].SetActive (true);
-			} else {
+			} else if (lista_personajes [1].tag == jugador_selecionado) {
 				lista_personajes [1].SetActive (true);
+			} else {
+				lista_personajes [2].SetActive (true);
 			}
 		}
 	}
