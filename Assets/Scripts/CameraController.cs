@@ -21,11 +21,17 @@ public class CameraController : MonoBehaviour {
 		try{
 			personajes = new GameObject[3];
 			personajes[0] = GameObject.FindGameObjectWithTag("Player1");
+			Debug.Log("1");
 			personajes[1] = GameObject.FindGameObjectWithTag("Player2");
+			Debug.Log("2");
 			personajes[2] = GameObject.FindGameObjectWithTag("Player3");
+			Debug.Log("3");
 			offset1 = transform.position - personajes[0].transform.position;
+			Debug.Log("4");
 			offset2 = transform.position - personajes[1].transform.position;
+			Debug.Log("5");
 			offset3 = transform.position - personajes[2].transform.position;
+			Debug.Log("6");
 			Debug.Log("CameraController: Tamaño lista= " + personajes.Length);
 		}catch(Exception e){
 			Debug.Log (e);
