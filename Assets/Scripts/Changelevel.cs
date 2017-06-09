@@ -18,10 +18,15 @@ public class Changelevel : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider jugador){
+		nivel_Actual = SceneManager.GetActiveScene ().name;
 		if (jugador.gameObject.tag == "Player1" || jugador.gameObject.tag == "Player2"
 			|| jugador.gameObject.tag == "Player3") {
 			Debug.Log ("BRAVOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			SceneManager.LoadScene ("nivel2");
+			if (nivel_Actual == "nivel1") {
+				SceneManager.LoadScene ("nivel2");
+			} else {
+				SceneManager.LoadScene ("nivel3");
+			}
 		}
 	}
 
