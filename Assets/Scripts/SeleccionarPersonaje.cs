@@ -13,13 +13,13 @@ public class SeleccionarPersonaje : MonoBehaviour {
 	private void Start () {
 		jugador_selecionado = PlayerPrefs.GetString ("Seleccion de personaje");
 		index = PlayerPrefs.GetInt ("Seleccion de personaje");
-		Debug.Log (SceneManager.GetActiveScene ().name + " "+ jugador_selecionado +" " + index);
+		//Debug.Log (SceneManager.GetActiveScene ().name + " "+ jugador_selecionado +" " + index);
 		if (SceneManager.GetActiveScene ().name == "Seleccion de personaje") {
 			Debug.Log ("Start seleccion");
 			escena_selection ();
 			act_desact ();
 		} else {
-			Debug.Log ("Otro nivel");
+			//Debug.Log ("Otro nivel");
 			lista_personajes = new GameObject[3];
 			lista_personajes[0] = GameObject.FindGameObjectWithTag("Player1");
 			lista_personajes[1] = GameObject.FindGameObjectWithTag("Player2");
@@ -29,7 +29,7 @@ public class SeleccionarPersonaje : MonoBehaviour {
 
 
 
-		Debug.Log ("SeleccionarPersonaje: Tamaño lista= " + lista_personajes.Length);
+		//Debug.Log ("SeleccionarPersonaje: Tamaño lista= " + lista_personajes.Length);
 	}
 
 	public void escena_selection(){
@@ -88,8 +88,8 @@ public class SeleccionarPersonaje : MonoBehaviour {
 
 	public void botonConfirmar(){
 		PlayerPrefs.SetInt ("Seleccion de personaje", index);
-		Debug.Log ("BotonConfirmar");
-		Debug.Log (SceneManager.GetActiveScene ().name+" " +lista_personajes[index].tag + " " + index);
+		//Debug.Log ("BotonConfirmar");
+		//Debug.Log (SceneManager.GetActiveScene ().name+" " +lista_personajes[index].tag + " " + index);
 		PlayerPrefs.SetString("Seleccion de personaje", lista_personajes[index].tag);
 		SceneManager.LoadScene("nivel1");
 	}

@@ -17,22 +17,22 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("Camera Controller ENTRO****");
+		//Debug.Log ("Camera Controller ENTRO****");
 		try{
 			personajes = new GameObject[3];
 			personajes[0] = GameObject.FindGameObjectWithTag("Player1");
-			Debug.Log("1");
+			//Debug.Log("1");
 			personajes[1] = GameObject.FindGameObjectWithTag("Player2");
-			Debug.Log("2");
+			//Debug.Log("2");
 			personajes[2] = GameObject.FindGameObjectWithTag("Player3");
-			Debug.Log("3");
+			//Debug.Log("3");
 			offset1 = transform.position - personajes[0].transform.position;
-			Debug.Log("4");
+			//Debug.Log("4");
 			offset2 = transform.position - personajes[1].transform.position;
-			Debug.Log("5");
+			//Debug.Log("5");
 			offset3 = transform.position - personajes[2].transform.position;
-			Debug.Log("6");
-			Debug.Log("CameraController: Tamaño lista= " + personajes.Length);
+		//	Debug.Log("6");
+			//Debug.Log("CameraController: Tamaño lista= " + personajes.Length);
 		}catch(Exception e){
 			Debug.Log (e);
 		}
@@ -42,8 +42,8 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		try{
-			Debug.Log("camera");
-			Debug.Log(transform.position);
+			//Debug.Log("camera");
+			//Debug.Log(transform.position);
 			if(personajes[0].activeSelf){
 				transform.position = jugado1.transform.position + offset1;
 			}else if(personajes[1].activeSelf){
